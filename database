@@ -1,0 +1,102 @@
+create database medicalcenter;
+
+use medicalcenter;
+
+create table login
+(
+username varchar(50) primary key not null,
+password varchar(50) not null
+);
+
+create table student(
+rollno varchar(50) primary key not null,
+fullname varchar(50) not null,
+department varchar(50) not null,
+course varchar(50)  not null,
+address varchar(100),
+telephone varchar(13),
+email varchar(30)
+);
+
+create table treatment (
+id int(122) auto_increment  primary key not null,
+name varchar(45) not null,
+rollno varchar(45) not null,
+treat_date date,
+disease varchar(50),
+tab1 varchar(30),
+tab2 varchar(30),
+tab3 varchar(30),
+tab4 varchar(30),
+tab5 varchar(30),
+qty1 int(20),
+qty2 int(20),
+qty3 int(20),
+qty4 int(20),
+qty5 int(20),
+examinedby varchar(30) not null,
+foreign key(rollno) references student(rollno) on delete cascade on update cascade
+);
+
+create table stock (
+stockid int(20) not null primary key auto_increment ,
+medicinename varchar(60) not null,
+code varchar(60) not null,
+quantity int(60), 
+expirydate date 
+
+);
+
+create table ward(
+wardentry int(12) not null primary key auto_increment,
+rollno varchar(20) not null ,
+name varchar(43) not null,
+disease varchar(40) not null,
+admitted date ,
+discharge date,
+examinedby varchar(40),
+foreign key(rollno) references student(rollno) on delete cascade on update cascade
+); 
+
+create table lab(
+labid int(12) not null primary key auto_increment,
+rollno varchar(20) not null ,
+name varchar(43) not null,
+test varchar(40) not null,
+date date not null,
+result varchar(45) not null ,
+examinedby varchar(40),
+labreport varchar(45),
+foreign key(rollno)references student(rollno) on delete cascade on update cascade
+); 
+
+
+create table finalstock(
+
+	name varchar(34) primary key not null,
+	quantity int(12) not null
+
+);
+
+create table stockdup (
+stockid int(20) not null primary key auto_increment ,
+medicinename varchar(60) not null,
+code varchar(60) not null,
+quantity int(60), 
+expirydate date 
+
+);
+
+create table lecture(
+rollno varchar(50) primary key not null,
+fullname varchar(50) not null,
+department varchar(50) not null,
+course varchar(50)  not null,
+address varchar(100),
+telephone varchar(13),
+email varchar(30),
+dependent1 varchar(30),
+dependent2 varchar(30),
+dependent3 varchar(30),
+dependent4 varchar(30)
+);
